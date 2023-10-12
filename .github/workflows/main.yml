@@ -1,0 +1,45 @@
+name: "Build and Test"
+
+on:
+  pull_request:
+    branches: [ master ]
+  push:
+    branches: [ master ]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_PASSWORD: mysecretpassword
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 3.1.4
+
+      - name: Install Bundler
+        run: gem install bundler
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Setup PostgreSQL
+        run: |
+          cp config/database.yml.example config/database.yml
+          bundle exec rake db:setup RACK_ENV=test
+
+      - name: Install and run chromedriver (if needed)
+        run: bundle exec rake webdrivers:chromedriver:update
+
+      - name: Run RSpec tests
+        run: bundle exec rspec

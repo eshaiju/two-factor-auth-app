@@ -7,14 +7,14 @@ sinatra_env = ENV.fetch('SINATRA_ENV', 'development')
 environment sinatra_env
 
 app_dir = File.expand_path(__dir__)
-app_dir = File.expand_path('..', __dir__) if %w[production staging].member?(sinatra_env)
+app_dir = File.expand_path('..', __dir__) if ['production', 'staging'].member?(sinatra_env)
 
 directory app_dir
 rackup "#{app_dir}/config.ru"
 
 shared_tmp_dir = "#{app_dir}/tmp"
 
-if %w[production staging].member?(sinatra_env)
+if ['production', 'staging'].member?(sinatra_env)
   stdout_redirect "#{app_dir}/log/puma.stdout.log", "#{app_dir}/log/puma.stderr.log", true
 
   pidfile "#{shared_tmp_dir}/pids/puma.pid"

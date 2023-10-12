@@ -1,0 +1,54 @@
+AllCops:
+  NewCops: enable
+Layout/LineLength:
+  Max: 120
+Metrics/AbcSize:
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: true
+Metrics/ModuleLength:
+  Enabled: true
+Style/Documentation:
+  Enabled: false
+Style/Lambda:
+  EnforcedStyle: literal
+Style/SymbolArray:
+  EnforcedStyle: brackets
+Style/WordArray:
+  EnforcedStyle: brackets
+Metrics/MethodLength:
+  Max: 100
+Layout/LineContinuationLeadingSpace:
+  Enabled: true
+  EnforcedStyle: trailing
+Lint/MissingSuper:
+  Enabled: false
+Style/SoleNestedConditional:
+  Enabled: false
+Style/FetchEnvVar:
+  Enabled: false
+Style/OpenStructUse:
+  Enabled: false
+Naming/BlockForwarding:
+  Enabled: true
+  EnforcedStyle: explicit
+Naming/PredicateName:
+  Enabled: false
+Naming/VariableNumber:
+  Enabled: false
+Style/ExponentialNotation:
+  Enabled: false
+Style/HashAsLastArrayItem:
+  Enabled: false
+Style/FormatString:
+  Enabled: false
+Style/FormatStringToken:
+  Enabled: false
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+Gemspec/RequireMFA:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: true

@@ -21,7 +21,7 @@ class ApplicationController < Sinatra::Base
 
     set :allow_origin, '*' # allows any origin(domain) to send fetch requests to your API
     # set :allow_methods, [:get, :post, :patch, :delete, :options] # allows these HTTP verbs
-    set :allow_methods, %i[get options] # allows these HTTP verbs
+    set :allow_methods, [:get, :options] # allows these HTTP verbs
     set :allow_credentials, true
     set :max_age, 1_728_000
     set :expose_headers, ['Content-Type']

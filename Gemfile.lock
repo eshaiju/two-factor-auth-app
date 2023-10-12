@@ -22,6 +22,7 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
+    bcrypt (3.1.19)
     bond (0.5.1)
     capybara (3.39.2)
       addressable
@@ -136,6 +137,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (~> 6.0, >= 6.0.3.2)
+  bcrypt
   capybara
   database_cleaner!
   dotenv

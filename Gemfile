@@ -4,6 +4,7 @@ source 'http://rubygems.org'
 ruby '3.1.2'
 
 gem 'activerecord', '~> 6.0', '>= 6.0.3.2', require: 'active_record'
+gem 'bcrypt'
 gem 'pg'
 gem 'pry'
 gem 'puma'

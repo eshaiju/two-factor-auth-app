@@ -12,6 +12,10 @@ feature 'User Sessions' do
     click_button 'Sign In'
 
     expect(page).to have_content('Welcome, test@example.com')
+
+    click_button 'Log Out'
+
+    expect(page).to have_content('Log In')
   end
 
   scenario 'User enters incorrect credentials' do

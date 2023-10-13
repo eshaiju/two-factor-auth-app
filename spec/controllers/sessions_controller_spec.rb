@@ -40,4 +40,22 @@ describe SessionsController do
       end
     end
   end
+
+  describe 'DELETE /logout' do
+    it 'clears the session and redirects to the root page' do
+      login_user
+
+      delete '/logout'
+
+      expect(last_request.env['rack.session'][:user_id]).to be_nil
+
+      expect(last_response).to be_redirect
+      follow_redirect!
+      expect(last_request.path).to eq('/')
+    end
+  end
+
+  def login_user
+    post '/login', email: 'user@example.com', password: 'password'
+  end
 end

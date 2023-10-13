@@ -36,6 +36,7 @@ class ApplicationController < Sinatra::Base
     set :views, File.join(root, 'app/views')
     set :sessions, true
     set :session_secret, ENV['SESSION_SECRET']
+    set :method_override, true
   end
 
   options '*' do
@@ -43,5 +44,13 @@ class ApplicationController < Sinatra::Base
     response.headers['Access-Control-Allow-Headers'] =
       'X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept'
     200
+  end
+
+  def current_user
+    User.find_by_id(session[:user_id])
+  end
+
+  def logged_in?
+    !!current_user
   end
 end

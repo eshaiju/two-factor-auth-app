@@ -7,3 +7,4 @@ run ApplicationController
 use DashboardController
 use UsersController
 use SessionsController
+use Rack::MethodOverride

@@ -8,11 +8,7 @@ require 'capybara/rspec'
 feature 'Password Change' do
   before do
     @user = User.create(email: 'user@example.com', password: 'password')
-
-    visit '/login'
-    fill_in 'Email', with: 'user@example.com'
-    fill_in 'Password', with: 'password'
-    click_button 'Sign In'
+    login_user(@user.email, @user.password)
   end
 
   scenario 'User can change their password' do

@@ -39,10 +39,16 @@ GEM
     database_cleaner-active_record (2.1.0)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
+    date (3.3.3)
     diff-lcs (1.5.0)
     dotenv (2.8.1)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
+    mail (2.8.1)
+      mini_mime (>= 0.1.1)
+      net-imap
+      net-pop
+      net-smtp
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.5)
@@ -50,6 +56,15 @@ GEM
     multi_json (1.15.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
+    net-imap (0.4.1)
+      date
+      net-protocol
+    net-pop (0.1.2)
+      net-protocol
+    net-protocol (0.2.1)
+      timeout
+    net-smtp (0.4.0)
+      net-protocol
     nio4r (2.5.9)
     nokogiri (1.15.4-aarch64-linux)
       racc (~> 1.4)
@@ -58,6 +73,8 @@ GEM
     nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
     pg (1.5.4)
+    pony (1.13.1)
+      mail (>= 2.0)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -127,6 +144,7 @@ GEM
       multi_json (~> 1.8)
       sinatra (>= 1.0)
     tilt (2.3.0)
+    timeout (0.4.0)
     tux (0.3.0)
       ripl (>= 0.3.5)
       ripl-multi_line (>= 0.2.4)
@@ -151,6 +169,7 @@ DEPENDENCIES
   database_cleaner!
   dotenv
   pg
+  pony
   pry
   puma
   rack-contrib

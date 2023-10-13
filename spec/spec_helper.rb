@@ -40,3 +40,5 @@ def app
 end
 
 Capybara.app = app
+
+Pony.override_options = { via: :test }

@@ -11,20 +11,19 @@ class PasswordsController < ApplicationController
 
   put '/passwords/update' do
     @user = User.find_by_id(session[:user_id])
+    form = PasswordUpdateForm.new(
+      current_user: @user,
+      params: {
+        current_password: params[:current_password],
+        new_password: params[:new_password],
+        confirm_password: params[:confirm_password]
+      }
+    )
 
-    if @user&.authenticate(params[:current_password])
-      new_password = params[:new_password]
-      confirm_password = params[:confirm_password]
-
-      if new_password == confirm_password
-        @user.update(password: new_password)
-        redirect '/'
-      else
-        @error = 'New password and confirmation do not match.'
-        erb :'/passwords/edit'
-      end
+    if form.save
+      redirect '/'
     else
-      @error = 'Current password is incorrect.'
+      @error = form.errors.full_messages.join('. ')
       erb :'/passwords/edit'
     end
   end

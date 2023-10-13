@@ -6,20 +6,15 @@ class TwoFactorSettingsController < ApplicationController
   end
 
   get '/2fa/setup' do
-    if logged_in?
-      @qrcode_data_uri = ::TwoFactorAuthenticator.qrcode_data_uri(current_user.secret_key)
+    @form = TwoFactorSetupForm.new(current_user: current_user)
 
-      erb :'2fa/setup'
-    else
-      redirect '/login'
-    end
+    erb :'2fa/setup'
   end
 
   post '/2fa/verify' do
-    totp = ROTP::TOTP.new(current_user.secret_key)
+    @form = TwoFactorSetupForm.new(current_user: current_user, params: params)
 
-    if totp.verify(params[:code])
-      current_user.update(two_factor_enabled: true)
+    if @form.valid? && @form.enable_two_factor
       session[:two_factor_authenticated] = true
       redirect '/'
     else

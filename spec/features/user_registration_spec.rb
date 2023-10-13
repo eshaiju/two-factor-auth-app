@@ -4,13 +4,22 @@ require 'spec_helper'
 
 describe 'User Registration' do
   context 'when registration succeeds' do
-    it 'redirects the user to the homepage' do
+    before do
       visit '/users/new'
       fill_in 'Email', with: 'newuser@example.com'
       fill_in 'Password', with: 'secure_password'
       click_button 'Register'
+    end
 
+    it 'redirects the user to the homepage' do
       expect(page).to have_current_path('/')
+    end
+
+    it 'sends a confirmation email to the user' do
+      email = Mail::TestMailer.deliveries.last
+
+      expect(email.to).to include('newuser@example.com')
+      expect(email.subject).to eq('Confirmation Email')
     end
   end
 

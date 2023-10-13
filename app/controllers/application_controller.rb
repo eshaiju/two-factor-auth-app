@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'sinatra/base' # Your file should require sinatra/base instead of sinatra; otherwise, all of Sinatra’s DSL methods are imported into the main namespace
+require 'sinatra/base'
 require 'sinatra/json'
 require 'sinatra/activerecord'
 require 'sinatra/reloader'

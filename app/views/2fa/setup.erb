@@ -1,8 +1,8 @@
 <h2>Enable Two-Factor Authentication</h2>
 <p>Scan the QR code below with your 2FA app:</p>
 
-<% if @qrcode_data_uri %>
-  <img src="<%= @qrcode_data_uri %>">
+<% if @form.qrcode_data_uri %>
+  <img src="<%= @form.qrcode_data_uri %>">
 <% else %>
   <p>Error generating QR code</p>
 <% end %>

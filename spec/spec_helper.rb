@@ -3,6 +3,8 @@
 ENV['SINATRA_ENV'] = 'test'
 
 require_relative '../config/environment'
+require_relative 'support/login_helper'
+
 require 'rack/test'
 require 'capybara/rspec'
 require 'capybara/dsl'
@@ -18,6 +20,8 @@ RSpec.configure do |config|
   config.filter_run :focus
   config.include Rack::Test::Methods
   config.include Capybara::DSL
+  config.include LoginHelper
+
   DatabaseCleaner.strategy = :truncation
 
   config.before do

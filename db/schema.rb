@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_231_012_162_514) do
+ActiveRecord::Schema.define(version: 20_231_013_135_715) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -21,5 +21,8 @@ ActiveRecord::Schema.define(version: 20_231_012_162_514) do
     t.string 'password_digest'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.string 'secret_key'
+    t.boolean 'two_factor_enabled', default: false
+    t.text 'backup_codes', default: [], array: true
   end
 end

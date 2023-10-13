@@ -6,10 +6,6 @@ require 'rack/test'
 describe SessionsController do
   include Rack::Test::Methods
 
-  def app
-    SessionsController
-  end
-
   describe 'GET /login' do
     it 'renders the login page' do
       get '/login'

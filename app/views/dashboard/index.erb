@@ -1,1 +1,8 @@
 <h1>Welcome, <%= @current_user.email %></h1>
+
+
+<% if current_user.two_factor_enabled? %>
+  <p>Two-Factor Authentication is Enabled</p>
+<% else %>
+  <a href="/2fa/setup">Enable Two-Factor Authentication</a>
+<% end %>

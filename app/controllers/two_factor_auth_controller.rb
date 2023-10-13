@@ -7,10 +7,9 @@ class TwoFactorAuthController < ApplicationController
 
   post '/2fa' do
     if current_user&.two_factor_enabled?
-      two_factor_code = params[:two_factor_code]
-      totp = ROTP::TOTP.new(current_user.secret_key)
+      @form = TwoFactorForm.new(current_user: current_user, params: params)
 
-      if totp.verify(two_factor_code)
+      if @form.valid?
         session[:two_factor_authenticated] = true
         redirect '/'
       else

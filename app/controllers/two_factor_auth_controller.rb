@@ -23,6 +23,11 @@ class TwoFactorAuthController < ApplicationController
     end
   end
 
+  post '/2fa/disable' do
+    current_user.update!(secret_key: nil, two_factor_enabled: false) if params[:disable_2fa]
+    redirect '/'
+  end
+
   private
 
   def current_user

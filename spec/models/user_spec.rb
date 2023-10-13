@@ -44,4 +44,23 @@ describe User do
       expect(authenticated_user).to be false
     end
   end
+
+  describe '#secret_key' do
+    context 'when the user has no secret key' do
+      it 'generates and saves a new secret key' do
+        user = User.create(email: 'test@example.com', password: 'password')
+
+        expect(user.secret_key).not_to be_blank
+      end
+    end
+
+    context 'when the user already has a secret key' do
+      it 'returns the existing secret key' do
+        existing_key = ROTP::Base32.random
+        user = User.create(email: 'test@example.com', password: 'password', secret_key: existing_key)
+
+        expect(user.secret_key).to eq(existing_key)
+      end
+    end
+  end
 end

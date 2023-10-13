@@ -18,11 +18,4 @@ describe 'Enabling Two-Factor Authentication' do
 
     expect(user.two_factor_enabled).to be(true)
   end
-
-  private
-
-  def valid_2fa_code(user)
-    totp = ROTP::TOTP.new(user.secret_key)
-    totp.now
-  end
 end

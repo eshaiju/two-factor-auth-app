@@ -10,7 +10,12 @@ class SessionsController < ApplicationController
 
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect '/'
+
+      if user.two_factor_enabled?
+        redirect '/2fa'
+      else
+        redirect '/'
+      end
     else
       @error = 'Incorrect email or password'
       erb :'/sessions/login'

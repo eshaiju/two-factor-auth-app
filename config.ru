@@ -9,3 +9,4 @@ use UsersController
 use SessionsController
 use PasswordsController
 use TwoFactorAuthController
+use TwoFactorSettingsController

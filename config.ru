@@ -2,4 +2,5 @@
 
 require './config/environment'
 run ApplicationController
-use ExampleController
+use DashboardController
+use UsersController

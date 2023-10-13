@@ -1,0 +1,26 @@
+<h1>Sign Up</h1>
+
+<form action="/users" method="post">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" name="email" id="email" value="<%= @user.email %>" required>
+
+    <% if @user.errors[:email] %>
+      <div class="error">
+        <%= @user.errors[:email].first %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" >
+    <% if @user.errors[:password] %>
+      <div class="error">
+        <%= @user.errors[:password].first %>
+      </div>
+    <% end %>
+  </div>
+
+  <button type="submit">Register</button>
+</form>

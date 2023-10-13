@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class PasswordsController < ApplicationController
+  before '/passwords/*' do
+    redirect '/login' unless logged_in?
+  end
+
   get '/passwords/edit' do
     erb :'/passwords/edit'
   end

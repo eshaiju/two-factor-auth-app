@@ -6,10 +6,6 @@ require 'rack/test'
 RSpec.describe UsersController do
   include Rack::Test::Methods
 
-  def app
-    UsersController
-  end
-
   describe 'GET /users/new' do
     it 'renders the registration form' do
       get '/users/new'

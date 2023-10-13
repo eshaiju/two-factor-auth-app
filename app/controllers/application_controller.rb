@@ -51,6 +51,14 @@ class ApplicationController < Sinatra::Base
   end
 
   def logged_in?
-    !!current_user
+    return false unless current_user
+
+    return true unless current_user.two_factor_enabled
+
+    two_factor_authenticated?
+  end
+
+  def two_factor_authenticated?
+    session[:two_factor_authenticated] == true
   end
 end

@@ -6,7 +6,7 @@ require 'capybara/rspec'
 RSpec.feature 'Disable Two-Factor Authentication' do
   scenario 'User disables 2FA' do
     user = User.create(email: 'user@example.com', password: 'password', two_factor_enabled: true)
-    login_user(user.email, user.password)
+    login_user_with_2fa(user)
 
     check 'disable_2fa'
 

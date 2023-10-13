@@ -1,36 +1,24 @@
 # frozen_string_literal: true
 
 class TwoFactorAuthController < ApplicationController
-  get '/2fa/setup' do
-    if logged_in?
-      @qrcode_data_uri = ::TwoFactorAuthenticator.qrcode_data_uri(current_user.secret_key)
+  get '/2fa' do
+    erb :'/sessions/2fa'
+  end
 
-      erb :'2fa/setup'
+  post '/2fa' do
+    if current_user&.two_factor_enabled?
+      two_factor_code = params[:two_factor_code]
+      totp = ROTP::TOTP.new(current_user.secret_key)
+
+      if totp.verify(two_factor_code)
+        session[:two_factor_authenticated] = true
+        redirect '/'
+      else
+        @error = 'Invalid 2FA code'
+        erb :'/sessions/2fa'
+      end
     else
-      redirect '/login'
+      erb :'/sessions/login'
     end
-  end
-
-  post '/2fa/verify' do
-    totp = ROTP::TOTP.new(current_user.secret_key)
-
-    if totp.verify(params[:code])
-      current_user.update(two_factor_enabled: true)
-      redirect '/'
-    else
-      @error = 'Invalid 2FA code'
-      erb :'/2fa/setup'
-    end
-  end
-
-  post '/2fa/disable' do
-    current_user.update!(secret_key: nil, two_factor_enabled: false) if params[:disable_2fa]
-    redirect '/'
-  end
-
-  private
-
-  def current_user
-    @current_user = User.find_by_id(session[:user_id])
   end
 end

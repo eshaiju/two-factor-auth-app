@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class TwoFactorSettingsController < ApplicationController
+  before '/2fa/*' do
+    redirect '/login' unless logged_in?
+  end
+
   get '/2fa/setup' do
     if logged_in?
       @qrcode_data_uri = ::TwoFactorAuthenticator.qrcode_data_uri(current_user.secret_key)

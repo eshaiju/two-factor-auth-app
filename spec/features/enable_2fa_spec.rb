@@ -5,7 +5,8 @@ require 'capybara/rspec'
 
 describe 'Enabling Two-Factor Authentication' do
   it 'enables 2FA for the user' do
-    user = User.create(email: 'user@example.com', password: 'password')
+    user = FactoryBot.create(:user, email: 'user@example.com', password: 'password')
+
     login_user(user.email, user.password)
 
     click_link 'Enable Two-Factor Authentication'

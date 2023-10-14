@@ -8,6 +8,7 @@ require_relative 'support/login_helper'
 require 'rack/test'
 require 'capybara/rspec'
 require 'capybara/dsl'
+require 'factory_bot'
 
 if ActiveRecord::Base.connection.migration_context.needs_migration?
   raise 'Migrations are pending. Run `rake db:migrate SINATRA_ENV=test` to resolve the issue.'
@@ -30,6 +31,12 @@ RSpec.configure do |config|
 
   config.after do
     DatabaseCleaner.clean
+  end
+
+  config.include FactoryBot::Syntax::Methods
+
+  config.before(:suite) do
+    FactoryBot.find_definitions
   end
 
   config.order = 'default'

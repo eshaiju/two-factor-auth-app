@@ -7,7 +7,7 @@ require 'capybara/rspec'
 
 feature 'Password Change' do
   before do
-    @user = User.create(email: 'user@example.com', password: 'password')
+    @user = FactoryBot.create(:user)
     login_user(@user.email, @user.password)
   end
 

@@ -17,7 +17,7 @@ describe SessionsController do
 
   describe 'POST /login' do
     context 'with valid credentials' do
-      let(:user) { User.create(email: 'test@example.com', password: 'password') }
+      let(:user) { FactoryBot.create(:user) }
 
       it 'redirects to the root page' do
         post '/login', email: user.email, password: 'password'

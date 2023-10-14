@@ -28,18 +28,17 @@ describe User do
   context 'password encryption' do
     it 'verifies the password correctly' do
       password = 'password'
-      user = User.create(email: 'user@example.com', password: password)
+      user = FactoryBot.create(:user, password: password)
 
-      authenticated_user = User.find_by(email: 'user@example.com').authenticate(password)
+      authenticated_user = User.find_by(email: 'test@example.com').authenticate(password)
 
       expect(authenticated_user).to eq(user)
     end
 
     it 'does not authenticate with an incorrect password' do
-      password = 'password'
-      User.create(email: 'user@example.com', password: password)
+      FactoryBot.create(:user)
 
-      authenticated_user = User.find_by(email: 'user@example.com').authenticate('wrong_password')
+      authenticated_user = User.find_by(email: 'test@example.com').authenticate('wrong_password')
 
       expect(authenticated_user).to be false
     end
@@ -48,7 +47,7 @@ describe User do
   describe '#secret_key' do
     context 'when the user has no secret key' do
       it 'generates and saves a new secret key' do
-        user = User.create(email: 'test@example.com', password: 'password')
+        user = FactoryBot.create(:user)
 
         expect(user.secret_key).not_to be_blank
       end
@@ -57,7 +56,7 @@ describe User do
     context 'when the user already has a secret key' do
       it 'returns the existing secret key' do
         existing_key = ROTP::Base32.random
-        user = User.create(email: 'test@example.com', password: 'password', secret_key: existing_key)
+        user = FactoryBot.create(:user, secret_key: existing_key)
 
         expect(user.secret_key).to eq(existing_key)
       end

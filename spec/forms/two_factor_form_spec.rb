@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 RSpec.describe TwoFactorForm do
-  let(:user) { User.create(email: 'user@example.com') }
+  let(:user) { FactoryBot.create(:user) }
 
   context 'with a valid two-factor code' do
     let(:params) { { two_factor_code: valid_2fa_code(user) } }

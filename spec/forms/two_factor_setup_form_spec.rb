@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 RSpec.describe TwoFactorSetupForm do
-  let(:user) { User.create(email: 'test@example.com', password: 'password') }
+  let(:user) { FactoryBot.create(:user) }
 
   subject { described_class.new(current_user: user, params: params) }
 

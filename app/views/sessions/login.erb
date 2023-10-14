@@ -1,5 +1,10 @@
 <h1>Log In</h1>
-<%= @error %>
+<% if @error %>
+  <div class="error-message">
+    <%= @error %>
+  </div>
+<% end %>
+
 <form method="post" action="/login">
   <p>
     <div><label for="email">Email</label></div>

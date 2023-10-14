@@ -16,7 +16,7 @@ class TwoFactorSettingsController < ApplicationController
 
     if @form.valid? && @form.enable_two_factor
       session[:two_factor_authenticated] = true
-      redirect '/'
+      redirect '/profile'
     else
       @error = 'Invalid 2FA code'
       erb :'/2fa/setup'
@@ -25,7 +25,7 @@ class TwoFactorSettingsController < ApplicationController
 
   post '/2fa/disable' do
     current_user.update!(secret_key: nil, two_factor_enabled: false) if params[:disable_2fa]
-    redirect '/'
+    redirect '/profile'
   end
 
   private

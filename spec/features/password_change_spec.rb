@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# spec/features/password_change_spec.rb
-
 require 'spec_helper'
 require 'capybara/rspec'
 
@@ -19,7 +17,7 @@ feature 'Password Change' do
     fill_in 'confirm_password', with: 'new_password'
     click_button 'Change Password'
 
-    expect(page).to have_current_path('/')
+    expect(page).to have_current_path('/profile')
   end
 
   scenario 'User cannot change password with incorrect current password' do

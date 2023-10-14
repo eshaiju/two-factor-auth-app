@@ -44,7 +44,7 @@ describe PasswordsController do
         expect(last_response).to be_redirect
         follow_redirect!
 
-        expect(last_request.path).to eq('/')
+        expect(last_request.path).to eq('/profile')
         user.reload
         expect(user.authenticate('new_password')).to be_truthy
       end

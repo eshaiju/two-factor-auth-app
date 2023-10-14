@@ -5,6 +5,7 @@ require 'pry'
 
 run ApplicationController
 use DashboardController
+use ProfileController
 use UsersController
 use SessionsController
 use PasswordsController

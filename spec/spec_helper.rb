@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ENV['SINATRA_ENV'] = 'test'
+ENV['RACK_ENV'] = 'test'
 
 require_relative '../config/environment'
 require_relative 'support/login_helper'

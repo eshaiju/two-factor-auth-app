@@ -6,7 +6,7 @@
     <input type="text" name="email" id="email" value="<%= @user.email %>" required>
 
     <% if @user.errors[:email] %>
-      <div class="error">
+      <div class="error-message">
         <%= @user.errors[:email].first %>
       </div>
     <% end %>
@@ -16,7 +16,7 @@
     <label for="password">Password</label>
     <input type="password" name="password" id="password" >
     <% if @user.errors[:password] %>
-      <div class="error">
+      <div class="error-message">
         <%= @user.errors[:password].first %>
       </div>
     <% end %>

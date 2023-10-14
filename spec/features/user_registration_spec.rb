@@ -25,7 +25,7 @@ describe 'User Registration' do
 
   context 'when registration fails' do
     it 'displays an error message when email has already been taken' do
-      User.create(email: 'eshaiju@gmail.com', password: 'secure_password')
+      FactoryBot.create(:user, email: 'eshaiju@gmail.com', password: 'secure_password')
 
       visit '/users/new'
       fill_in 'Email', with: 'eshaiju@gmail.com'

@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe PasswordUpdateForm do
-  let(:user) { User.create(email: 'user@example.com', password: 'password') }
+  let(:user) { FactoryBot.create(:user) }
 
   describe 'validations' do
     context 'with valid parameters' do

@@ -5,7 +5,7 @@ require 'spec_helper'
 RSpec.describe UserMailer do
   describe '.send_confirmation_email' do
     it 'sends a confirmation email with the expected content' do
-      user = User.create(email: 'user@example.com', password: 'password')
+      user = FactoryBot.create(:user)
 
       UserMailer.send_confirmation_email(user).deliver
 

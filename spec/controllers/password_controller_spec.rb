@@ -5,7 +5,7 @@ require 'spec_helper'
 describe PasswordsController do
   include Rack::Test::Methods
 
-  let(:user) { User.create(email: 'test@example.com', password: 'password') }
+  let(:user) { FactoryBot.create(:user) }
 
   describe 'GET /passwords/edit' do
     context 'when logged in' do

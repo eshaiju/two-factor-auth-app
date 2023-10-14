@@ -4,7 +4,7 @@ require 'spec_helper'
 
 feature 'User Sessions' do
   before do
-    @user = User.create(email: 'test@example.com', password: 'password')
+    @user = FactoryBot.create(:user)
   end
 
   scenario 'User logs in with valid credentials' do

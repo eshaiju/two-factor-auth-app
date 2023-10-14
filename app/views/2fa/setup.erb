@@ -7,6 +7,12 @@
   <p>Error generating QR code</p>
 <% end %>
 
+<% if @error %>
+  <div class="error-message">
+    <%= @error %>
+  </div>
+<% end %>
+
 <form action="/2fa/verify" method="post">
   <label for="code">Enter the code from your app:</label>
   <input type="text" name="code" required>

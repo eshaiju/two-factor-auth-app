@@ -43,6 +43,6 @@ feature 'User Sessions' do
     fill_in 'two_factor_code', with: valid_2fa_code(@user)
     click_button 'Submit'
 
-    expect(page).to have_current_path('/profile')
+    expect(page).to have_current_path('/')
   end
 end

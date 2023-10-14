@@ -9,6 +9,8 @@ describe 'Enabling Two-Factor Authentication' do
 
     login_user(user.email, user.password)
 
+    click_link 'Profile'
+
     click_link 'Enable Two-Factor Authentication'
 
     fill_in 'code', with: valid_2fa_code(user)

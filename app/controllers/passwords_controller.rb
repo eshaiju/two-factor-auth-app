@@ -21,7 +21,7 @@ class PasswordsController < ApplicationController
     )
 
     if form.save
-      redirect '/'
+      redirect '/profile'
     else
       @error = form.errors.full_messages.join('. ')
       erb :'/passwords/edit'

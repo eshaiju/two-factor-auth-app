@@ -1,0 +1,17 @@
+<div>
+  <a href="/passwords/edit">Edit Password</a>
+</div>
+<br>
+<div>
+  <% if current_user.two_factor_enabled? %>
+    <p>Two-Factor Authentication is Enabled</p>
+
+    <form action="/2fa/disable" method="post">
+      <label for="disable_2fa">Disable Two-Factor Authentication</label>
+      <input type="checkbox" name="disable_2fa">
+      <input type="submit" value="Save">
+    </form>
+  <% else %>
+    <a href="/2fa/setup">Enable Two-Factor Authentication</a>
+  <% end %>
+</div>

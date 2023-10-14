@@ -9,6 +9,8 @@ RSpec.feature 'Disable Two-Factor Authentication' do
 
     login_user_with_2fa(user)
 
+    click_link 'Profile'
+
     check 'disable_2fa'
 
     click_button 'Save'

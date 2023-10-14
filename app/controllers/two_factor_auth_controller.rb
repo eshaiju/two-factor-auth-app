@@ -11,7 +11,7 @@ class TwoFactorAuthController < ApplicationController
 
       if @form.valid?
         session[:two_factor_authenticated] = true
-        redirect '/'
+        redirect '/profile'
       else
         @error = 'Invalid 2FA code'
         erb :'/sessions/2fa'
